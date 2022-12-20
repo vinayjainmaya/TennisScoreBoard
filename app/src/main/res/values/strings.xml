@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">TennisScoreBoard</string>
+    <string name="player_a">Player A</string>
+    <string name="player_b">Player B</string>
+    <string name="match">Match</string>
+    <string name="set">Set</string>
+    <string name="point">Point</string>
+    <string name="reset">Reset</string>
+    <string name="string_placeholder">%s</string>
+    <string name="result_string">%s won the match..!</string>
 </resources>

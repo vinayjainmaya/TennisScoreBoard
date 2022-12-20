@@ -1,5 +1,7 @@
 package com.vinaymj.tennisscore.domain
 
+import com.vinaymj.tennisscore.common.isDeuce
+import com.vinaymj.tennisscore.common.isGame
 import com.vinaymj.tennisscore.domain.model.Match
 import javax.inject.Inject
 
@@ -66,22 +68,6 @@ class ScoreUpdateUseCase @Inject constructor() {
             else -> {
                 match
             }
-        }
-    }
-
-    private fun isDeuce(playerAGP: Int, playerBGP: Int, deuce: Boolean): Boolean {
-        return if(deuce){
-            (playerAGP ==  playerBGP)
-        } else {
-            (playerAGP == 3 && playerBGP == 3)
-        }
-    }
-
-    private fun isGame(playerAGP: Int, playerBGP: Int, deuce: Boolean): Boolean {
-        return if(deuce) {
-            (playerAGP - playerBGP) == 2
-        } else {
-            playerAGP == 4
         }
     }
 
