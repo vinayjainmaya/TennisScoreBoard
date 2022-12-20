@@ -55,6 +55,16 @@ class ScoreUpdateUseCaseTest {
         Assert.assertEquals(0, actual.playerA.score.gamePoint)
     }
 
+    @Test
+    fun `should return deuce true when player A point increased`() {
+        val mockObject = getMatchMockObject(
+            2,0,0,
+            3,0,0,
+            ScoreUpdateUseCase.Players.A
+        )
+        val actual = useCase.execute(mockObject)
+        Assert.assertTrue(actual.deuce)
+    }
 
     @Test
     fun `should return game point 1 for player b`() {
@@ -94,6 +104,17 @@ class ScoreUpdateUseCaseTest {
         )
         val actual = useCase.execute(mockObject)
         Assert.assertEquals(0, actual.playerB.score.gamePoint)
+    }
+
+    @Test
+    fun `should return deuce true when player B point increased`() {
+        val mockObject = getMatchMockObject(
+            3,0,0,
+            2,0,0,
+            ScoreUpdateUseCase.Players.B
+        )
+        val actual = useCase.execute(mockObject)
+        Assert.assertTrue(actual.deuce)
     }
 
 }

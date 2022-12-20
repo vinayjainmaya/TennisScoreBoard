@@ -15,21 +15,35 @@ class ScoreUpdateUseCase @Inject constructor() {
         return when(match.pointTo) {
             Players.A -> {
                 match.playerA.score.gamePoint++
-                if(match.playerA.score.gamePoint == 4) {
-                    match.deuce = false
-                    match.playerA.score.gamePoint = 0
-                    match.playerB.score.gamePoint = 0
-                    // updateSetPoint()
+                when {
+                    (match.playerA.score.gamePoint == 3 && match.playerB.score.gamePoint == 3) -> {
+                        match.deuce = true
+                        match.playerA.score.gamePoint = 3
+                        match.playerB.score.gamePoint = 3
+                    }
+                    (match.playerA.score.gamePoint == 4) -> {
+                        match.deuce = false
+                        match.playerA.score.gamePoint = 0
+                        match.playerB.score.gamePoint = 0
+                        // updateSetPoint()
+                    }
                 }
                 match
             }
             Players.B -> {
                 match.playerB.score.gamePoint++
-                if(match.playerB.score.gamePoint == 4) {
-                    match.deuce = false
-                    match.playerA.score.gamePoint = 0
-                    match.playerB.score.gamePoint = 0
-                    // updateSetPoint()
+                when {
+                    (match.playerB.score.gamePoint == 3 && match.playerA.score.gamePoint == 3) -> {
+                        match.deuce = true
+                        match.playerB.score.gamePoint = 3
+                        match.playerA.score.gamePoint = 3
+                    }
+                    (match.playerB.score.gamePoint == 4) -> {
+                        match.deuce = false
+                        match.playerA.score.gamePoint = 0
+                        match.playerB.score.gamePoint = 0
+                        // updateSetPoint()
+                    }
                 }
                 match
             }
