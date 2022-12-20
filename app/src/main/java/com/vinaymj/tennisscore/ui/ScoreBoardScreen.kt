@@ -30,7 +30,7 @@ fun ScoreBoardScreen(
     Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
 
         // table section
-        if (scoreBoard.match.playerA.score.match == 2 || scoreBoard.match.playerB.score.match == 2) {
+        if (scoreBoard.match.playerA.score.matchPoint == 2 || scoreBoard.match.playerB.score.matchPoint == 2) {
             ResultSection(modifier, scoreBoard)
         }
         // table section
@@ -44,7 +44,7 @@ fun ScoreBoardScreen(
 @Composable
 fun ResultSection(modifier: Modifier, scoreBoard: ScoreBoardUiState) {
     Text(text = stringResource(R.string.result_string,
-        stringResource(if (scoreBoard.match.playerA.score.match == 2) R.string.player_a else R.string.player_b)),
+        stringResource(if (scoreBoard.match.playerA.score.matchPoint == 2) R.string.player_a else R.string.player_b)),
         modifier = modifier.padding(8.dp),
         fontWeight = FontWeight.Bold,
         fontSize = 20.sp)
@@ -79,11 +79,11 @@ fun ScoreTableSection(modifier: Modifier, scoreBoard: ScoreBoardUiState) {
                 fontSize = 20.sp,
                 color = Purple700)
             Text(text = stringResource(R.string.string_placeholder,
-                scoreBoard.match.playerA.score.match),
+                scoreBoard.match.playerA.score.matchPoint),
                 modifier = modifier.padding(8.dp),
                 fontSize = 20.sp)
             Text(text = stringResource(R.string.string_placeholder,
-                scoreBoard.match.playerB.score.match),
+                scoreBoard.match.playerB.score.matchPoint),
                 modifier = modifier.padding(8.dp),
                 fontSize = 20.sp)
         }
@@ -96,11 +96,11 @@ fun ScoreTableSection(modifier: Modifier, scoreBoard: ScoreBoardUiState) {
                 fontSize = 20.sp,
                 color = Purple700)
             Text(text = stringResource(R.string.string_placeholder,
-                scoreBoard.match.playerA.score.set),
+                scoreBoard.match.playerA.score.setPoint),
                 modifier = modifier.padding(8.dp),
                 fontSize = 20.sp)
             Text(text = stringResource(R.string.string_placeholder,
-                scoreBoard.match.playerB.score.set),
+                scoreBoard.match.playerB.score.setPoint),
                 modifier = modifier.padding(8.dp),
                 fontSize = 20.sp)
         }

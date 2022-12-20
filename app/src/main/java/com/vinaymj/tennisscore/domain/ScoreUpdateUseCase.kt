@@ -35,7 +35,7 @@ class ScoreUpdateUseCase @Inject constructor() {
                         match.deuce = false
                         match.playerA.score.gamePoint = 0
                         match.playerB.score.gamePoint = 0
-                        // updateSetPoint()
+                        updateSetPoint(match)
                     }
                 }
                 match
@@ -60,13 +60,52 @@ class ScoreUpdateUseCase @Inject constructor() {
                         match.deuce = false
                         match.playerA.score.gamePoint = 0
                         match.playerB.score.gamePoint = 0
-                        // updateSetPoint()
+                        updateSetPoint(match)
                     }
                 }
                 match
             }
             else -> {
                 match
+            }
+        }
+    }
+
+    private fun updateSetPoint(match: Match) {
+        when(match.pointTo) {
+            Players.A -> {
+                match.playerA.score.setPoint++
+                when {
+                    (match.playerA.score.setPoint == 6) -> {
+                        match.tieBreak = false
+                        match.playerA.score.apply {
+                            matchPoint++
+                            setPoint = 0
+                            gamePoint = 0
+                        }
+                        match.playerB.score.apply {
+                            setPoint = 0
+                            gamePoint = 0
+                        }
+                    }
+                }
+            }
+            Players.B -> {
+                match.playerB.score.setPoint++
+                when {
+                    (match.playerB.score.setPoint == 6) -> {
+                        match.tieBreak = false
+                        match.playerB.score.apply {
+                            matchPoint++
+                            setPoint = 0
+                            gamePoint = 0
+                        }
+                        match.playerA.score.apply {
+                            setPoint = 0
+                            gamePoint = 0
+                        }
+                    }
+                }
             }
         }
     }

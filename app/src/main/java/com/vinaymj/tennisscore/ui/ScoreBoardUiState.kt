@@ -10,15 +10,15 @@ data class ScoreBoardUiState(
         playerA = Player(
             score = Score(
                 gamePoint = 0,
-                set = 0,
-                match = 0
+                setPoint = 0,
+                matchPoint = 0
             )
         ),
         playerB = Player(
             score = Score(
                 gamePoint = 0,
-                set = 0,
-                match = 0
+                setPoint = 0,
+                matchPoint = 0
             )
         ),
         deuce = false,

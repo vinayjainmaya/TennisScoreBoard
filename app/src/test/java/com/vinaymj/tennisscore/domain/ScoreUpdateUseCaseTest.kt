@@ -187,4 +187,59 @@ class ScoreUpdateUseCaseTest {
         Assert.assertEquals(3, actual.playerA.score.gamePoint)
     }
 
+
+    @Test
+    fun `should return set point 1 when player A is game`() {
+        val mockObject = getMatchMockObject(
+            3,0,0,
+            0,0,0,
+            ScoreUpdateUseCase.Players.A
+        )
+        val actual = useCase.execute(mockObject)
+        Assert.assertEquals(1, actual.playerA.score.setPoint)
+        Assert.assertEquals(0, actual.playerA.score.gamePoint)
+        Assert.assertEquals(0, actual.playerB.score.gamePoint)
+    }
+
+    @Test
+    fun `should return set point 2 when player A is game again`() {
+        val mockObject = getMatchMockObject(
+            3,1,0,
+            0,0,0,
+            ScoreUpdateUseCase.Players.A
+        )
+        val actual = useCase.execute(mockObject)
+        Assert.assertEquals(2, actual.playerA.score.setPoint)
+        Assert.assertEquals(0, actual.playerA.score.gamePoint)
+        Assert.assertEquals(0, actual.playerB.score.gamePoint)
+    }
+
+    @Test
+    fun `should return set point 0 when player A set point reaches to 6`() {
+        val mockObject = getMatchMockObject(
+            3,5,0,
+            0,0,0,
+            ScoreUpdateUseCase.Players.A
+        )
+        val actual = useCase.execute(mockObject)
+        Assert.assertEquals(0, actual.playerA.score.setPoint)
+        Assert.assertEquals(0, actual.playerA.score.gamePoint)
+        Assert.assertEquals(0, actual.playerB.score.gamePoint)
+    }
+
+    @Test
+    fun `should return match point 1 when player A set point reaches to 6`() {
+        val mockObject = getMatchMockObject(
+            3,5,0,
+            0,1,0,
+            ScoreUpdateUseCase.Players.A
+        )
+        val actual = useCase.execute(mockObject)
+        Assert.assertEquals(1, actual.playerA.score.matchPoint)
+        Assert.assertEquals(0, actual.playerA.score.setPoint)
+        Assert.assertEquals(0, actual.playerA.score.gamePoint)
+        Assert.assertEquals(0, actual.playerB.score.gamePoint)
+        Assert.assertEquals(0, actual.playerB.score.setPoint)
+    }
+
 }
