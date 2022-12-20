@@ -16,12 +16,20 @@ class ScoreUpdateUseCase @Inject constructor() {
             Players.A -> {
                 match.playerA.score.gamePoint++
                 when {
-                    (match.playerA.score.gamePoint == 3 && match.playerB.score.gamePoint == 3) -> {
+                    isDeuce(
+                        match.playerA.score.gamePoint,
+                        match.playerB.score.gamePoint,
+                        match.deuce
+                    ) -> {
                         match.deuce = true
                         match.playerA.score.gamePoint = 3
                         match.playerB.score.gamePoint = 3
                     }
-                    (match.playerA.score.gamePoint == 4) -> {
+                    isGame(
+                        match.playerA.score.gamePoint,
+                        match.playerB.score.gamePoint,
+                        match.deuce
+                    ) -> {
                         match.deuce = false
                         match.playerA.score.gamePoint = 0
                         match.playerB.score.gamePoint = 0
@@ -33,12 +41,20 @@ class ScoreUpdateUseCase @Inject constructor() {
             Players.B -> {
                 match.playerB.score.gamePoint++
                 when {
-                    (match.playerB.score.gamePoint == 3 && match.playerA.score.gamePoint == 3) -> {
+                    isDeuce(
+                        match.playerB.score.gamePoint,
+                        match.playerA.score.gamePoint,
+                        match.deuce
+                    ) -> {
                         match.deuce = true
                         match.playerB.score.gamePoint = 3
                         match.playerA.score.gamePoint = 3
                     }
-                    (match.playerB.score.gamePoint == 4) -> {
+                    isGame(
+                        match.playerB.score.gamePoint,
+                        match.playerA.score.gamePoint,
+                        match.deuce
+                    ) -> {
                         match.deuce = false
                         match.playerA.score.gamePoint = 0
                         match.playerB.score.gamePoint = 0
@@ -50,6 +66,22 @@ class ScoreUpdateUseCase @Inject constructor() {
             else -> {
                 match
             }
+        }
+    }
+
+    private fun isDeuce(playerAGP: Int, playerBGP: Int, deuce: Boolean): Boolean {
+        return if(deuce){
+            (playerAGP ==  playerBGP)
+        } else {
+            (playerAGP == 3 && playerBGP == 3)
+        }
+    }
+
+    private fun isGame(playerAGP: Int, playerBGP: Int, deuce: Boolean): Boolean {
+        return if(deuce) {
+            (playerAGP - playerBGP) == 2
+        } else {
+            playerAGP == 4
         }
     }
 
