@@ -15,10 +15,22 @@ class ScoreUpdateUseCase @Inject constructor() {
         return when(match.pointTo) {
             Players.A -> {
                 match.playerA.score.gamePoint++
+                if(match.playerA.score.gamePoint == 4) {
+                    match.deuce = false
+                    match.playerA.score.gamePoint = 0
+                    match.playerB.score.gamePoint = 0
+                    // updateSetPoint()
+                }
                 match
             }
             Players.B -> {
                 match.playerB.score.gamePoint++
+                if(match.playerB.score.gamePoint == 4) {
+                    match.deuce = false
+                    match.playerA.score.gamePoint = 0
+                    match.playerB.score.gamePoint = 0
+                    // updateSetPoint()
+                }
                 match
             }
             else -> {
@@ -26,6 +38,7 @@ class ScoreUpdateUseCase @Inject constructor() {
             }
         }
     }
+
 
     enum class Players {
         A,
