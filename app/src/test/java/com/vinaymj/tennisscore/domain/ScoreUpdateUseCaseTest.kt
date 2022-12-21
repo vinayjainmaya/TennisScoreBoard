@@ -242,4 +242,18 @@ class ScoreUpdateUseCaseTest {
         Assert.assertEquals(0, actual.playerB.score.setPoint)
     }
 
+    @Test
+    fun `should not update the score after match win`() {
+        val mockObject = getMatchMockObject(
+            0,0,2,
+            0,0,0,
+            ScoreUpdateUseCase.Players.A
+        )
+        val actual = useCase.execute(mockObject)
+        Assert.assertEquals(2, actual.playerA.score.matchPoint)
+        Assert.assertEquals(0, actual.playerA.score.setPoint)
+        Assert.assertEquals(0, actual.playerA.score.gamePoint)
+        Assert.assertEquals(0, actual.playerB.score.gamePoint)
+        Assert.assertEquals(0, actual.playerB.score.setPoint)
+    }
 }

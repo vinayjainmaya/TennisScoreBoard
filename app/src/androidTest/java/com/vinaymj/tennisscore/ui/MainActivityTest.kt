@@ -152,4 +152,28 @@ class MainActivityTest {
         composeTestRule.onNodeWithTag("playerBMatchPoint").assertTextEquals("0")
     }
 
+    @Test
+    fun shouldNotUpdateScoreAfterAnyPlayerWinMatch() {
+
+        performOneFullMatch(composeTestRule.onNodeWithTag("playerAButton"))
+        performOneFullMatch(composeTestRule.onNodeWithTag("playerAButton"))
+
+        composeTestRule.onNodeWithTag("playerAMatchPoint").assertTextEquals("2")
+        composeTestRule.onNodeWithTag("playerBMatchPoint").assertTextEquals("0")
+        composeTestRule.onNodeWithTag("playerASetPoint").assertTextEquals("0")
+        composeTestRule.onNodeWithTag("playerBSetPoint").assertTextEquals("0")
+        composeTestRule.onNodeWithTag("playerAGamePoint").assertTextEquals("0")
+        composeTestRule.onNodeWithTag("playerBGamePoint").assertTextEquals("0")
+
+        composeTestRule.onNodeWithTag("playerAButton").performClick()
+        composeTestRule.onNodeWithTag("playerBButton").performClick()
+
+        composeTestRule.onNodeWithTag("playerAMatchPoint").assertTextEquals("2")
+        composeTestRule.onNodeWithTag("playerBMatchPoint").assertTextEquals("0")
+        composeTestRule.onNodeWithTag("playerASetPoint").assertTextEquals("0")
+        composeTestRule.onNodeWithTag("playerBSetPoint").assertTextEquals("0")
+        composeTestRule.onNodeWithTag("playerAGamePoint").assertTextEquals("0")
+        composeTestRule.onNodeWithTag("playerBGamePoint").assertTextEquals("0")
+    }
+
 }

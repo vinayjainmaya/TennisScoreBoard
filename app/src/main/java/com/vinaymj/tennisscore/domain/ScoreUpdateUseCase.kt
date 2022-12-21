@@ -10,6 +10,10 @@ class ScoreUpdateUseCase @Inject constructor() {
 
 
     fun execute(match: Match): Match {
+        if(match.playerA.score.matchPoint == 2
+            || match.playerB.score.matchPoint == 2) {
+            return match
+        }
         return updateGamePoint(match)
     }
 
