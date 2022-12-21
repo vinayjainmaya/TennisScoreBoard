@@ -1,5 +1,5 @@
 # TennisScoreBoard
-Simple application to demonstrate the Tennis scoreboard best of three.
+This is a sample app to demonstrate the Tennis scoreboard, which uses Clean Architecture with MVVM and Jetpack Compose for UI screens 
 
 # Rules
 ### Game points
