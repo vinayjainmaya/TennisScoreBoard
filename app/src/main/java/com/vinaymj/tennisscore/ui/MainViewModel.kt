@@ -22,6 +22,7 @@ class MainViewModel @Inject constructor(
     val scoreBoardState: StateFlow<ScoreBoardUiState> = _scoreBoardState.asStateFlow()
 
     fun updateScore(point_to: Players) {
+
         val m = cloneMatchObject(_scoreBoardState.value.match)
 
         val updatedScore = useCase.execute(m.apply { pointTo = point_to })
