@@ -9,6 +9,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -45,7 +46,7 @@ fun ScoreBoardScreen(
 fun ResultSection(modifier: Modifier, scoreBoard: ScoreBoardUiState) {
     Text(text = stringResource(R.string.result_string,
         stringResource(if (scoreBoard.match.playerA.score.matchPoint == 2) R.string.player_a else R.string.player_b)),
-        modifier = modifier.padding(8.dp),
+        modifier = modifier.padding(8.dp).testTag("matchResult"),
         fontWeight = FontWeight.Bold,
         fontSize = 20.sp)
 }
@@ -60,12 +61,14 @@ fun ScoreTableSection(modifier: Modifier, scoreBoard: ScoreBoardUiState) {
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp)
             Text(text = stringResource(R.string.player_a),
-                modifier = modifier.padding(8.dp),
+                modifier = modifier.padding(8.dp)
+                    .testTag("rowHeadPlayerA"),
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp,
                 color = Purple700)
             Text(text = stringResource(R.string.player_b),
-                modifier = modifier.padding(8.dp),
+                modifier = modifier.padding(8.dp)
+                    .testTag("rowHeadPlayerB"),
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp,
                 color = Purple700)
@@ -80,11 +83,13 @@ fun ScoreTableSection(modifier: Modifier, scoreBoard: ScoreBoardUiState) {
                 color = Purple700)
             Text(text = stringResource(R.string.string_placeholder,
                 scoreBoard.match.playerA.score.matchPoint),
-                modifier = modifier.padding(8.dp),
+                modifier = modifier.padding(8.dp)
+                    .testTag("playerAMatchPoint"),
                 fontSize = 20.sp)
             Text(text = stringResource(R.string.string_placeholder,
                 scoreBoard.match.playerB.score.matchPoint),
-                modifier = modifier.padding(8.dp),
+                modifier = modifier.padding(8.dp)
+                    .testTag("playerBMatchPoint"),
                 fontSize = 20.sp)
         }
 
@@ -97,11 +102,13 @@ fun ScoreTableSection(modifier: Modifier, scoreBoard: ScoreBoardUiState) {
                 color = Purple700)
             Text(text = stringResource(R.string.string_placeholder,
                 scoreBoard.match.playerA.score.setPoint),
-                modifier = modifier.padding(8.dp),
+                modifier = modifier.padding(8.dp)
+                    .testTag("playerASetPoint"),
                 fontSize = 20.sp)
             Text(text = stringResource(R.string.string_placeholder,
                 scoreBoard.match.playerB.score.setPoint),
-                modifier = modifier.padding(8.dp),
+                modifier = modifier.padding(8.dp)
+                    .testTag("playerBSetPoint"),
                 fontSize = 20.sp)
         }
 
@@ -114,11 +121,13 @@ fun ScoreTableSection(modifier: Modifier, scoreBoard: ScoreBoardUiState) {
                 color = Purple700)
             Text(text = stringResource(R.string.string_placeholder,
                 getDisplayGamePoint(scoreBoard.match.playerA.score.gamePoint, scoreBoard.match.deuce)),
-                modifier = modifier.padding(8.dp),
+                modifier = modifier.padding(8.dp)
+                    .testTag("playerAGamePoint"),
                 fontSize = 20.sp)
             Text(text = stringResource(R.string.string_placeholder,
                 getDisplayGamePoint(scoreBoard.match.playerB.score.gamePoint, scoreBoard.match.deuce)),
-                modifier = modifier.padding(8.dp),
+                modifier = modifier.padding(8.dp)
+                    .testTag("playerBGamePoint"),
                 fontSize = 20.sp)
         }
     }
@@ -130,13 +139,21 @@ fun ButtonSection(modifier: Modifier, mainViewModel: MainViewModel) {
         .fillMaxWidth()
         .padding(8.dp),
         horizontalArrangement = Arrangement.Center) {
-        OutlinedButton(modifier = modifier.padding(8.dp, 8.dp, 24.dp, 8.dp), onClick = {
+        OutlinedButton(
+            modifier = modifier
+                .padding(8.dp, 8.dp, 24.dp, 8.dp)
+                .testTag("playerAButton"),
+            onClick = {
             mainViewModel.updateScore(Players.A)
         }) {
             Text(text = stringResource(id = R.string.player_a))
         }
 
-        Button(modifier = modifier.padding(24.dp, 8.dp, 8.dp, 8.dp), onClick = {
+        Button(
+            modifier = modifier
+                .padding(24.dp, 8.dp, 8.dp, 8.dp)
+                .testTag("playerBButton"),
+            onClick = {
             mainViewModel.updateScore(Players.B)
         }) {
             Text(text = stringResource(id = R.string.player_b))
@@ -146,7 +163,9 @@ fun ButtonSection(modifier: Modifier, mainViewModel: MainViewModel) {
         .fillMaxWidth()
         .padding(8.dp),
         horizontalArrangement = Arrangement.Center) {
-        Button(modifier = modifier.padding(8.dp), onClick = {
+        Button(
+            modifier = modifier.padding(8.dp).testTag("resetButton"),
+            onClick = {
             mainViewModel.resetMatchScore()
         }) {
             Text(text = stringResource(id = R.string.reset))

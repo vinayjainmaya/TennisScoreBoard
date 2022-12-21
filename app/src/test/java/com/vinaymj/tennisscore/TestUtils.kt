@@ -27,5 +27,4 @@ fun getMatchMockObject(
         deuce = deuce,
         tieBreak = tiebreak
     )
-
 }
