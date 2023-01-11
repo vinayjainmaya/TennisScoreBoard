@@ -16,7 +16,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.vinaymj.tennisscore.R
-import com.vinaymj.tennisscore.common.getDisplayGamePoint
 import com.vinaymj.tennisscore.domain.ScoreUpdateUseCase.Players
 import com.vinaymj.tennisscore.ui.theme.Purple700
 
@@ -31,7 +30,7 @@ fun ScoreBoardScreen(
     Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
 
         // table section
-        if (scoreBoard.match.playerA.score.matchPoint == 2 || scoreBoard.match.playerB.score.matchPoint == 2) {
+        if (scoreBoard.match.ifSomeBodyWins()) {
             ResultSection(modifier, scoreBoard)
         }
         // table section
@@ -45,7 +44,7 @@ fun ScoreBoardScreen(
 @Composable
 fun ResultSection(modifier: Modifier, scoreBoard: ScoreBoardUiState) {
     Text(text = stringResource(R.string.result_string,
-        stringResource(if (scoreBoard.match.playerA.score.matchPoint == 2) R.string.player_a else R.string.player_b)),
+        stringResource(if (scoreBoard.match.playerA.wins()) R.string.player_a else R.string.player_b)),
         modifier = modifier.padding(8.dp).testTag("matchResult"),
         fontWeight = FontWeight.Bold,
         fontSize = 20.sp)
@@ -120,12 +119,12 @@ fun ScoreTableSection(modifier: Modifier, scoreBoard: ScoreBoardUiState) {
                 fontSize = 20.sp,
                 color = Purple700)
             Text(text = stringResource(R.string.string_placeholder,
-                getDisplayGamePoint(scoreBoard.match.playerA.score.gamePoint, scoreBoard.match.deuce)),
+                scoreBoard.match.displayGamePoint(scoreBoard.match.playerA.score.gamePoint)),
                 modifier = modifier.padding(8.dp)
                     .testTag("playerAGamePoint"),
                 fontSize = 20.sp)
             Text(text = stringResource(R.string.string_placeholder,
-                getDisplayGamePoint(scoreBoard.match.playerB.score.gamePoint, scoreBoard.match.deuce)),
+                scoreBoard.match.displayGamePoint(scoreBoard.match.playerB.score.gamePoint)),
                 modifier = modifier.padding(8.dp)
                     .testTag("playerBGamePoint"),
                 fontSize = 20.sp)

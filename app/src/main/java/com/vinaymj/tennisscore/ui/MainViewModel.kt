@@ -1,7 +1,6 @@
 package com.vinaymj.tennisscore.ui
 
 import androidx.lifecycle.ViewModel
-import com.vinaymj.tennisscore.common.cloneMatchObject
 import com.vinaymj.tennisscore.domain.ScoreUpdateUseCase
 import com.vinaymj.tennisscore.domain.ScoreUpdateUseCase.Players
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -23,7 +22,8 @@ class MainViewModel @Inject constructor(
 
     fun updateScore(point_to: Players) {
 
-        val m = cloneMatchObject(_scoreBoardState.value.match)
+        // need to pass the current states of the match
+        val m = _scoreBoardState.value.match.clone()
 
         val updatedScore = useCase.execute(m.apply { pointTo = point_to })
 
