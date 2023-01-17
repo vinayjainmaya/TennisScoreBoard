@@ -4,34 +4,27 @@ data class Player(
     val score: Score
 ){
     fun updateGamePoint() {
-        score.gamePoint++
+        score.updateGamePoint()
     }
 
     fun updateSetPoint() {
-        score.apply {
-            setPoint++
-            gamePoint = 0
-        }
+        score.updateSetPoint()
     }
 
     fun updateMatchPoint() {
-        score.apply {
-            matchPoint++
-            setPoint = 0
-            gamePoint = 0
-        }
+        score.updateMatchPoint()
     }
 
     fun resetGamePoint() {
-        score.gamePoint = 0
+        score.resetGamePoint()
     }
 
     fun resetSetPoint() {
-        score.setPoint = 0
+        score.resetSetPoint()
     }
 
     fun setDeucePoint() {
-        score.gamePoint = 3
+        score.setDeucePoint()
     }
 
     fun wins() = (score.matchPoint == 2)
