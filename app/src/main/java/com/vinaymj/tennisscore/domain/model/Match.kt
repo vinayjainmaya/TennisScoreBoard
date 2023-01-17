@@ -12,7 +12,7 @@ data class Match(
 ) {
 
     fun matchScore(): Match {
-        if (ifSomeBodyWins()) {
+        if (someBodyWins()) {
             return this
         }
         // Swap the values to handle same logic for both players
@@ -21,12 +21,12 @@ data class Match(
 
         tempPlayerA.updateGamePoint()
         when {
-            ifDeuce() -> {
+            deuce() -> {
                 deuce = true
                 tempPlayerA.setDeucePoint()
                 tempPlayerB.setDeucePoint()
             }
-            ifGamePoint(tempPlayerA, tempPlayerB) -> {
+            gamePoint(tempPlayerA, tempPlayerB) -> {
                 deuce = false
                 tempPlayerA.resetGamePoint()
                 tempPlayerB.resetGamePoint()
@@ -47,7 +47,7 @@ data class Match(
 
     }
 
-    private fun ifDeuce(): Boolean {
+    private fun deuce(): Boolean {
         return if (deuce) {
             (playerA.score.gamePoint == playerB.score.gamePoint)
         } else {
@@ -55,7 +55,7 @@ data class Match(
         }
     }
 
-    private fun ifGamePoint(tempPlayerA: Player, tempPlayerB: Player): Boolean {
+    private fun gamePoint(tempPlayerA: Player, tempPlayerB: Player): Boolean {
 
         return if (deuce) {
             (tempPlayerA.score.gamePoint - tempPlayerB.score.gamePoint) == 2
@@ -80,6 +80,6 @@ data class Match(
         }
     }
 
-    fun ifSomeBodyWins() = (playerA.score.matchPoint == 2 || playerB.score.matchPoint == 2)
+    fun someBodyWins() = (playerA.score.matchPoint == 2 || playerB.score.matchPoint == 2)
 
 }

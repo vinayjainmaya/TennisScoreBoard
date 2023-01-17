@@ -30,7 +30,7 @@ fun ScoreBoardScreen(
     Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
 
         // table section
-        if (scoreBoard.match.ifSomeBodyWins()) {
+        if (scoreBoard.match.someBodyWins()) {
             ResultSection(modifier, scoreBoard)
         }
         // table section
