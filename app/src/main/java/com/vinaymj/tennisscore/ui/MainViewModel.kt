@@ -23,9 +23,9 @@ class MainViewModel @Inject constructor(
     fun updateScore(point_to: PointTo) {
 
         // need to pass the current states of the match
-        val m = _scoreBoardState.value.match.clone()
+        val matchState = _scoreBoardState.value.match.clone()
 
-        val updatedScore = useCase.execute(m.apply { pointTo = point_to })
+        val updatedScore = useCase.execute(matchState.apply { pointTo = point_to })
 
         _scoreBoardState.update {
             it.copy(
