@@ -11,7 +11,7 @@ data class Match(
     var tieBreak: Boolean,
 ) {
 
-    fun updateMatchScore(): Match {
+    fun matchScore(): Match {
         if (ifSomeBodyWins()) {
             return this
         }

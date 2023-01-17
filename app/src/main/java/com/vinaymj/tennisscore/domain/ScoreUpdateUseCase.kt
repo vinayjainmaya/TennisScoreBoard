@@ -8,7 +8,7 @@ class ScoreUpdateUseCase @Inject constructor() {
 
 
     fun execute(match: Match): Match {
-        return match.updateMatchScore()
+        return match.matchScore()
     }
 
 
