@@ -11,9 +11,9 @@ data class Match(
     var tieBreak: Boolean,
 ) {
 
-    fun matchScore(): Match {
+    fun matchScore() {
         if (someBodyWins()) {
-            return this
+            return
         }
         // Swap the values to handle same logic for both players
         val tempPlayerA = if (pointTo == PointTo.A) playerA else playerB
@@ -33,7 +33,6 @@ data class Match(
                 updateSetPoint(tempPlayerA, tempPlayerB)
             }
         }
-        return this
     }
 
     private fun updateSetPoint(tempPlayerA: Player, tempPlayerB: Player) {

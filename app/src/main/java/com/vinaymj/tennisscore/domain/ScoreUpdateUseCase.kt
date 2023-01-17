@@ -7,8 +7,8 @@ import javax.inject.Inject
 class ScoreUpdateUseCase @Inject constructor() {
 
 
-    fun execute(match: Match): Match {
-        return match.matchScore()
+    fun execute(match: Match) = match.apply {
+        matchScore()
     }
 
 
