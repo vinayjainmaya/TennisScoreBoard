@@ -28,10 +28,10 @@ class MainViewModelTest {
     fun `update player A game point by 1`() {
         val matchMockObject = getMatchMockObject(
             1,0,0,
-            0,0,0,ScoreUpdateUseCase.Players.A
+            0,0,0,ScoreUpdateUseCase.PointTo.A
         )
         every { useCase.execute(any()) } returns matchMockObject
-        viewModel.updateScore(ScoreUpdateUseCase.Players.A)
+        viewModel.updateScore(ScoreUpdateUseCase.PointTo.A)
         val result = viewModel.scoreBoardState.value
         Assert.assertEquals(result.match.playerA.score.gamePoint, 1)
     }

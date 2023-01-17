@@ -1,12 +1,12 @@
 package com.vinaymj.tennisscore.domain.model
 
 import com.vinaymj.tennisscore.common.Constants
-import com.vinaymj.tennisscore.domain.ScoreUpdateUseCase.Players
+import com.vinaymj.tennisscore.domain.ScoreUpdateUseCase.PointTo
 
 data class Match(
     val playerA: Player,
     val playerB: Player,
-    var pointTo: Players,
+    var pointTo: PointTo,
     var deuce: Boolean,
     var tieBreak: Boolean,
 ) {
@@ -16,8 +16,8 @@ data class Match(
             return this
         }
         // Swap the values to handle same logic for both players
-        val tempPlayerA = if (pointTo == Players.A) playerA else playerB
-        val tempPlayerB = if (pointTo == Players.B) playerA else playerB
+        val tempPlayerA = if (pointTo == PointTo.A) playerA else playerB
+        val tempPlayerB = if (pointTo == PointTo.B) playerA else playerB
 
         tempPlayerA.updateGamePoint()
         when {

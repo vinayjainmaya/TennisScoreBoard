@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.vinaymj.tennisscore.R
-import com.vinaymj.tennisscore.domain.ScoreUpdateUseCase.Players
+import com.vinaymj.tennisscore.domain.ScoreUpdateUseCase.PointTo
 import com.vinaymj.tennisscore.ui.theme.Purple700
 
 
@@ -143,7 +143,7 @@ fun ButtonSection(modifier: Modifier, mainViewModel: MainViewModel) {
                 .padding(8.dp, 8.dp, 24.dp, 8.dp)
                 .testTag("playerAButton"),
             onClick = {
-            mainViewModel.updateScore(Players.A)
+            mainViewModel.updateScore(PointTo.A)
         }) {
             Text(text = stringResource(id = R.string.player_a))
         }
@@ -153,7 +153,7 @@ fun ButtonSection(modifier: Modifier, mainViewModel: MainViewModel) {
                 .padding(24.dp, 8.dp, 8.dp, 8.dp)
                 .testTag("playerBButton"),
             onClick = {
-            mainViewModel.updateScore(Players.B)
+            mainViewModel.updateScore(PointTo.B)
         }) {
             Text(text = stringResource(id = R.string.player_b))
         }

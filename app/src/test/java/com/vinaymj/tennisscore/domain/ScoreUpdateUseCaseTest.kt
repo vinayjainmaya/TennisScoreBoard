@@ -27,7 +27,7 @@ class ScoreUpdateUseCaseTest {
         val mockObject = getMatchMockObject(
             1,0,0,
             0,0,0,
-            ScoreUpdateUseCase.Players.A
+            ScoreUpdateUseCase.PointTo.A
         )
         val actual = useCase.execute(mockObject)
         Assert.assertEquals(2, actual.playerA.score.gamePoint)
@@ -38,7 +38,7 @@ class ScoreUpdateUseCaseTest {
         val mockObject = getMatchMockObject(
             2,0,0,
             0,0,0,
-            ScoreUpdateUseCase.Players.A
+            ScoreUpdateUseCase.PointTo.A
         )
         val actual = useCase.execute(mockObject)
         Assert.assertEquals(3, actual.playerA.score.gamePoint)
@@ -49,7 +49,7 @@ class ScoreUpdateUseCaseTest {
         val mockObject = getMatchMockObject(
             3,0,0,
             0,0,0,
-            ScoreUpdateUseCase.Players.A
+            ScoreUpdateUseCase.PointTo.A
         )
         val actual = useCase.execute(mockObject)
         Assert.assertEquals(0, actual.playerA.score.gamePoint)
@@ -60,7 +60,7 @@ class ScoreUpdateUseCaseTest {
         val mockObject = getMatchMockObject(
             2,0,0,
             3,0,0,
-            ScoreUpdateUseCase.Players.A
+            ScoreUpdateUseCase.PointTo.A
         )
         val actual = useCase.execute(mockObject)
         Assert.assertTrue(actual.deuce)
@@ -68,7 +68,7 @@ class ScoreUpdateUseCaseTest {
 
     @Test
     fun `should return game point 1 for player b`() {
-        val mockObject = getMatchMockObject(pointTo = ScoreUpdateUseCase.Players.B)
+        val mockObject = getMatchMockObject(pointTo = ScoreUpdateUseCase.PointTo.B)
         val actual = useCase.execute(mockObject)
         Assert.assertEquals(1, actual.playerB.score.gamePoint)
     }
@@ -78,7 +78,7 @@ class ScoreUpdateUseCaseTest {
         val mockObject = getMatchMockObject(
             0,0,0,
             1,0,0,
-            ScoreUpdateUseCase.Players.B
+            ScoreUpdateUseCase.PointTo.B
         )
         val actual = useCase.execute(mockObject)
         Assert.assertEquals(2, actual.playerB.score.gamePoint)
@@ -89,7 +89,7 @@ class ScoreUpdateUseCaseTest {
         val mockObject = getMatchMockObject(
             0,0,0,
             2,0,0,
-            ScoreUpdateUseCase.Players.B
+            ScoreUpdateUseCase.PointTo.B
         )
         val actual = useCase.execute(mockObject)
         Assert.assertEquals(3, actual.playerB.score.gamePoint)
@@ -100,7 +100,7 @@ class ScoreUpdateUseCaseTest {
         val mockObject = getMatchMockObject(
             0,0,0,
             3,0,0,
-            ScoreUpdateUseCase.Players.B
+            ScoreUpdateUseCase.PointTo.B
         )
         val actual = useCase.execute(mockObject)
         Assert.assertEquals(0, actual.playerB.score.gamePoint)
@@ -111,7 +111,7 @@ class ScoreUpdateUseCaseTest {
         val mockObject = getMatchMockObject(
             3,0,0,
             2,0,0,
-            ScoreUpdateUseCase.Players.B
+            ScoreUpdateUseCase.PointTo.B
         )
         val actual = useCase.execute(mockObject)
         Assert.assertTrue(actual.deuce)
@@ -122,7 +122,7 @@ class ScoreUpdateUseCaseTest {
         val mockObject = getMatchMockObject(
             3,0,0,
             3,0,0,
-            ScoreUpdateUseCase.Players.A, true
+            ScoreUpdateUseCase.PointTo.A, true
         )
         val actual = useCase.execute(mockObject)
         Assert.assertEquals(4, actual.playerA.score.gamePoint)
@@ -133,7 +133,7 @@ class ScoreUpdateUseCaseTest {
         val mockObject = getMatchMockObject(
             3,0,0,
             3,0,0,
-            ScoreUpdateUseCase.Players.B, true
+            ScoreUpdateUseCase.PointTo.B, true
         )
         val actual = useCase.execute(mockObject)
         Assert.assertEquals(4, actual.playerB.score.gamePoint)
@@ -144,7 +144,7 @@ class ScoreUpdateUseCaseTest {
         val mockObject = getMatchMockObject(
             4,0,0,
             3,0,0,
-            ScoreUpdateUseCase.Players.A, true
+            ScoreUpdateUseCase.PointTo.A, true
         )
         val actual = useCase.execute(mockObject)
         Assert.assertEquals(0, actual.playerA.score.gamePoint)
@@ -156,7 +156,7 @@ class ScoreUpdateUseCaseTest {
         val mockObject = getMatchMockObject(
             3,0,0,
             4,0,0,
-            ScoreUpdateUseCase.Players.B, true
+            ScoreUpdateUseCase.PointTo.B, true
         )
         val actual = useCase.execute(mockObject)
         Assert.assertEquals(0, actual.playerB.score.gamePoint)
@@ -168,7 +168,7 @@ class ScoreUpdateUseCaseTest {
         val mockObject = getMatchMockObject(
             3,0,0,
             4,0,0,
-            ScoreUpdateUseCase.Players.A, true
+            ScoreUpdateUseCase.PointTo.A, true
         )
         val actual = useCase.execute(mockObject)
         Assert.assertEquals(3, actual.playerB.score.gamePoint)
@@ -180,7 +180,7 @@ class ScoreUpdateUseCaseTest {
         val mockObject = getMatchMockObject(
             4,0,0,
             3,0,0,
-            ScoreUpdateUseCase.Players.B, true
+            ScoreUpdateUseCase.PointTo.B, true
         )
         val actual = useCase.execute(mockObject)
         Assert.assertEquals(3, actual.playerB.score.gamePoint)
@@ -193,7 +193,7 @@ class ScoreUpdateUseCaseTest {
         val mockObject = getMatchMockObject(
             3,0,0,
             0,0,0,
-            ScoreUpdateUseCase.Players.A
+            ScoreUpdateUseCase.PointTo.A
         )
         val actual = useCase.execute(mockObject)
         Assert.assertEquals(1, actual.playerA.score.setPoint)
@@ -206,7 +206,7 @@ class ScoreUpdateUseCaseTest {
         val mockObject = getMatchMockObject(
             3,1,0,
             0,0,0,
-            ScoreUpdateUseCase.Players.A
+            ScoreUpdateUseCase.PointTo.A
         )
         val actual = useCase.execute(mockObject)
         Assert.assertEquals(2, actual.playerA.score.setPoint)
@@ -219,7 +219,7 @@ class ScoreUpdateUseCaseTest {
         val mockObject = getMatchMockObject(
             3,5,0,
             0,0,0,
-            ScoreUpdateUseCase.Players.A
+            ScoreUpdateUseCase.PointTo.A
         )
         val actual = useCase.execute(mockObject)
         Assert.assertEquals(0, actual.playerA.score.setPoint)
@@ -232,7 +232,7 @@ class ScoreUpdateUseCaseTest {
         val mockObject = getMatchMockObject(
             3,5,0,
             0,1,0,
-            ScoreUpdateUseCase.Players.A
+            ScoreUpdateUseCase.PointTo.A
         )
         val actual = useCase.execute(mockObject)
         Assert.assertEquals(1, actual.playerA.score.matchPoint)
@@ -247,7 +247,7 @@ class ScoreUpdateUseCaseTest {
         val mockObject = getMatchMockObject(
             0,0,2,
             0,0,0,
-            ScoreUpdateUseCase.Players.A
+            ScoreUpdateUseCase.PointTo.A
         )
         val actual = useCase.execute(mockObject)
         Assert.assertEquals(2, actual.playerA.score.matchPoint)

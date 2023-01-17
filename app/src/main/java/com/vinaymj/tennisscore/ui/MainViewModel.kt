@@ -2,7 +2,7 @@ package com.vinaymj.tennisscore.ui
 
 import androidx.lifecycle.ViewModel
 import com.vinaymj.tennisscore.domain.ScoreUpdateUseCase
-import com.vinaymj.tennisscore.domain.ScoreUpdateUseCase.Players
+import com.vinaymj.tennisscore.domain.ScoreUpdateUseCase.PointTo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -20,7 +20,7 @@ class MainViewModel @Inject constructor(
     private val _scoreBoardState = MutableStateFlow(ScoreBoardUiState())
     val scoreBoardState: StateFlow<ScoreBoardUiState> = _scoreBoardState.asStateFlow()
 
-    fun updateScore(point_to: Players) {
+    fun updateScore(point_to: PointTo) {
 
         // need to pass the current states of the match
         val m = _scoreBoardState.value.match.clone()

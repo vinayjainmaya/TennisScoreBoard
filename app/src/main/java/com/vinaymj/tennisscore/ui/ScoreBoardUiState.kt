@@ -1,6 +1,6 @@
 package com.vinaymj.tennisscore.ui
 
-import com.vinaymj.tennisscore.domain.ScoreUpdateUseCase.Players
+import com.vinaymj.tennisscore.domain.ScoreUpdateUseCase.PointTo
 import com.vinaymj.tennisscore.domain.model.Match
 import com.vinaymj.tennisscore.domain.model.Player
 import com.vinaymj.tennisscore.domain.model.Score
@@ -23,6 +23,6 @@ data class ScoreBoardUiState(
         ),
         deuce = false,
         tieBreak = false,
-        pointTo = Players.NON
+        pointTo = PointTo.NON
     )
 )

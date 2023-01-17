@@ -12,7 +12,7 @@ class ScoreUpdateUseCase @Inject constructor() {
     }
 
 
-    enum class Players {
+    enum class PointTo {
         A,
         B,
         NON
