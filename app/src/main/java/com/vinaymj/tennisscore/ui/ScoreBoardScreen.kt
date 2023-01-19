@@ -55,81 +55,55 @@ fun ScoreTableSection(modifier: Modifier, scoreBoard: ScoreBoardUiState) {
     Row(modifier = modifier.padding(8.dp)) {
         // Player Section
         Column(modifier = modifier.padding(8.dp)) {
-            Text(text = "",
-                modifier = modifier.padding(8.dp),
-                fontWeight = FontWeight.Bold,
-                fontSize = 20.sp)
-            Text(text = stringResource(R.string.player_a),
-                modifier = modifier.padding(8.dp)
-                    .testTag("rowHeadPlayerA"),
-                fontWeight = FontWeight.Bold,
-                fontSize = 20.sp,
-                color = Purple700)
-            Text(text = stringResource(R.string.player_b),
-                modifier = modifier.padding(8.dp)
-                    .testTag("rowHeadPlayerB"),
-                fontWeight = FontWeight.Bold,
-                fontSize = 20.sp,
-                color = Purple700)
+
+            DrawTableHeader(modifier)
+            DrawTableHeader(modifier, R.string.player_a, "rowHeadPlayerA")
+            DrawTableHeader(modifier, R.string.player_b, "rowHeadPlayerB")
+
         }
 
         // Match Section
         Column(modifier = modifier.padding(8.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(text = stringResource(R.string.match),
-                modifier = modifier.padding(8.dp),
-                fontWeight = FontWeight.Bold,
-                fontSize = 20.sp,
-                color = Purple700)
-            Text(text = stringResource(R.string.string_placeholder,
-                scoreBoard.match.playerA.score.matchPoint),
-                modifier = modifier.padding(8.dp)
-                    .testTag("playerAMatchPoint"),
-                fontSize = 20.sp)
-            Text(text = stringResource(R.string.string_placeholder,
-                scoreBoard.match.playerB.score.matchPoint),
-                modifier = modifier.padding(8.dp)
-                    .testTag("playerBMatchPoint"),
-                fontSize = 20.sp)
+            DrawTableHeader(modifier,R.string.match)
+            DrawTableCell(modifier, scoreBoard.match.playerA.score.matchPoint.toString(), "playerAMatchPoint")
+            DrawTableCell(modifier, scoreBoard.match.playerB.score.matchPoint.toString(), "playerBMatchPoint")
         }
 
         // Set Section
         Column(modifier = modifier.padding(8.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(text = stringResource(R.string.set),
-                modifier = modifier.padding(8.dp),
-                fontWeight = FontWeight.Bold,
-                fontSize = 20.sp,
-                color = Purple700)
-            Text(text = stringResource(R.string.string_placeholder,
-                scoreBoard.match.playerA.score.setPoint),
-                modifier = modifier.padding(8.dp)
-                    .testTag("playerASetPoint"),
-                fontSize = 20.sp)
-            Text(text = stringResource(R.string.string_placeholder,
-                scoreBoard.match.playerB.score.setPoint),
-                modifier = modifier.padding(8.dp)
-                    .testTag("playerBSetPoint"),
-                fontSize = 20.sp)
+            DrawTableHeader(modifier,R.string.set)
+            DrawTableCell(modifier, scoreBoard.match.playerA.score.setPoint.toString(), "playerASetPoint")
+            DrawTableCell(modifier, scoreBoard.match.playerB.score.setPoint.toString(), "playerBSetPoint")
         }
 
         // Point Section
         Column(modifier = modifier.padding(8.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(text = stringResource(R.string.point),
-                modifier = modifier.padding(8.dp),
-                fontWeight = FontWeight.Bold,
-                fontSize = 20.sp,
-                color = Purple700)
-            Text(text = stringResource(R.string.string_placeholder,
-                scoreBoard.match.displayGamePoint(scoreBoard.match.playerA.score.gamePoint)),
-                modifier = modifier.padding(8.dp)
-                    .testTag("playerAGamePoint"),
-                fontSize = 20.sp)
-            Text(text = stringResource(R.string.string_placeholder,
-                scoreBoard.match.displayGamePoint(scoreBoard.match.playerB.score.gamePoint)),
-                modifier = modifier.padding(8.dp)
-                    .testTag("playerBGamePoint"),
-                fontSize = 20.sp)
+
+            DrawTableHeader(modifier,R.string.point)
+            DrawTableCell(modifier,
+                scoreBoard.match.displayGamePoint(scoreBoard.match.playerA.score.gamePoint),
+                "playerAGamePoint")
+            DrawTableCell(modifier,
+                scoreBoard.match.displayGamePoint(scoreBoard.match.playerB.score.gamePoint),
+                "playerBGamePoint")
         }
     }
+}
+
+@Composable
+fun DrawTableCell(modifier: Modifier, value: String, tagValue: String) {
+    Text(text = stringResource(R.string.string_placeholder, value),
+        modifier = modifier.padding(8.dp).testTag(tagValue),
+        fontSize = 20.sp)
+}
+
+@Composable
+private fun DrawTableHeader(modifier: Modifier, resourceId: Int = R.string.string_empty, tagValue: String = "") {
+    Text(text = stringResource(resourceId),
+        modifier = modifier.padding(8.dp).testTag(tagValue),
+        fontWeight = FontWeight.Bold,
+        fontSize = 20.sp,
+        color = Purple700)
 }
 
 @Composable
