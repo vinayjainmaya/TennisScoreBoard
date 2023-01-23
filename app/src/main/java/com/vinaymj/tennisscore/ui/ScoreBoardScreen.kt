@@ -29,8 +29,8 @@ fun ScoreBoardScreen(
 
     Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
 
-        // table section
-        if (scoreBoard.match.someBodyWins()) {
+        // Result section
+        if (scoreBoard.match.someBodyWin) {
             ResultSection(modifier, scoreBoard)
         }
         // table section
@@ -47,7 +47,8 @@ fun ResultSection(modifier: Modifier, scoreBoard: ScoreBoardUiState) {
         stringResource(if (scoreBoard.match.playerA.wins()) R.string.player_a else R.string.player_b)),
         modifier = modifier.padding(8.dp).testTag("matchResult"),
         fontWeight = FontWeight.Bold,
-        fontSize = 20.sp)
+        fontSize = 20.sp
+    )
 }
 
 @Composable
@@ -65,27 +66,23 @@ fun ScoreTableSection(modifier: Modifier, scoreBoard: ScoreBoardUiState) {
         // Match Section
         Column(modifier = modifier.padding(8.dp), horizontalAlignment = Alignment.CenterHorizontally) {
             DrawTableHeader(modifier,R.string.match)
-            DrawTableCell(modifier, scoreBoard.match.playerA.score.matchPoint.toString(), "playerAMatchPoint")
-            DrawTableCell(modifier, scoreBoard.match.playerB.score.matchPoint.toString(), "playerBMatchPoint")
+            DrawTableCell(modifier, scoreBoard.match.playerA.matchPoint.toString(), "playerAMatchPoint")
+            DrawTableCell(modifier, scoreBoard.match.playerB.matchPoint.toString(), "playerBMatchPoint")
         }
 
         // Set Section
         Column(modifier = modifier.padding(8.dp), horizontalAlignment = Alignment.CenterHorizontally) {
             DrawTableHeader(modifier,R.string.set)
-            DrawTableCell(modifier, scoreBoard.match.playerA.score.setPoint.toString(), "playerASetPoint")
-            DrawTableCell(modifier, scoreBoard.match.playerB.score.setPoint.toString(), "playerBSetPoint")
+            DrawTableCell(modifier, scoreBoard.match.playerA.setPoint.toString(), "playerASetPoint")
+            DrawTableCell(modifier, scoreBoard.match.playerB.setPoint.toString(), "playerBSetPoint")
         }
 
         // Point Section
         Column(modifier = modifier.padding(8.dp), horizontalAlignment = Alignment.CenterHorizontally) {
 
             DrawTableHeader(modifier,R.string.point)
-            DrawTableCell(modifier,
-                scoreBoard.match.displayGamePoint(scoreBoard.match.playerA.score.gamePoint),
-                "playerAGamePoint")
-            DrawTableCell(modifier,
-                scoreBoard.match.displayGamePoint(scoreBoard.match.playerB.score.gamePoint),
-                "playerBGamePoint")
+            DrawTableCell(modifier, scoreBoard.match.playerA.gamePoint, "playerAGamePoint")
+            DrawTableCell(modifier, scoreBoard.match.playerB.gamePoint, "playerBGamePoint")
         }
     }
 }

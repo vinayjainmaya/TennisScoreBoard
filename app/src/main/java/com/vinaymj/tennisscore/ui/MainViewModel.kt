@@ -21,21 +21,17 @@ class MainViewModel @Inject constructor(
     val scoreBoardState: StateFlow<ScoreBoardUiState> = _scoreBoardState.asStateFlow()
 
     fun updateScore(point_to: PointTo) {
-
-        // need to pass the current states of the match
-        val matchState = _scoreBoardState.value.match.clone()
-
-        val updatedScore = useCase.execute(matchState.apply { pointTo = point_to })
-
         _scoreBoardState.update {
             it.copy(
-                match = updatedScore
+                match = useCase.execute( pointTo = point_to)
             )
         }
     }
 
     fun resetMatchScore() {
-        _scoreBoardState.value = ScoreBoardUiState()
+        _scoreBoardState.update {
+            it.copy(match = useCase.resetScoreBoard())
+        }
     }
 
 }

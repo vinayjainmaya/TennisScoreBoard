@@ -1,28 +1,22 @@
 package com.vinaymj.tennisscore.ui
 
 import com.vinaymj.tennisscore.domain.ScoreUpdateUseCase.PointTo
-import com.vinaymj.tennisscore.domain.model.Match
+import com.vinaymj.tennisscore.domain.model.MatchScore
 import com.vinaymj.tennisscore.domain.model.Player
-import com.vinaymj.tennisscore.domain.model.Score
 
 data class ScoreBoardUiState(
-    val match: Match = Match(
+    val match: MatchScore = MatchScore(
         playerA = Player(
-            score = Score(
-                gamePoint = 0,
-                setPoint = 0,
-                matchPoint = 0
-            )
+            gamePoint = "0",
+            setPoint = 0,
+            matchPoint = 0
         ),
         playerB = Player(
-            score = Score(
-                gamePoint = 0,
-                setPoint = 0,
-                matchPoint = 0
-            )
+            gamePoint = "0",
+            setPoint = 0,
+            matchPoint = 0
         ),
-        deuce = false,
-        tieBreak = false,
-        pointTo = PointTo.NON
+        pointTo = PointTo.NON,
+        someBodyWin = false
     )
 )
