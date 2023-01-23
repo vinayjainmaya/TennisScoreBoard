@@ -1,31 +1,9 @@
 package com.vinaymj.tennisscore.domain.model
 
 data class Player(
-    val score: Score
-){
-    fun updateGamePoint() {
-        score.updateGamePoint()
-    }
-
-    fun updateSetPoint() {
-        score.updateSetPoint()
-    }
-
-    fun updateMatchPoint() {
-        score.updateMatchPoint()
-    }
-
-    fun resetGamePoint() {
-        score.resetGamePoint()
-    }
-
-    fun resetSetPoint() {
-        score.resetSetPoint()
-    }
-
-    fun setDeucePoint() {
-        score.setDeucePoint()
-    }
-
-    fun wins() = (score.matchPoint == 2)
+   var gamePoint: String = "",
+   var setPoint: Int = 0,
+   var matchPoint: Int = 0
+) {
+    fun wins() = matchPoint == 2
 }

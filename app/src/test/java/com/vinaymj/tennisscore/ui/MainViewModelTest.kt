@@ -1,7 +1,8 @@
 package com.vinaymj.tennisscore.ui
 
 import com.vinaymj.tennisscore.domain.ScoreUpdateUseCase
-import com.vinaymj.tennisscore.getMatchMockObject
+import com.vinaymj.tennisscore.domain.model.MatchScore
+import com.vinaymj.tennisscore.domain.model.Player
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
@@ -26,22 +27,30 @@ class MainViewModelTest {
 
     @Test
     fun `update player A game point by 1`() {
-        val matchMockObject = getMatchMockObject(
-            1,0,0,
-            0,0,0,ScoreUpdateUseCase.PointTo.A
+        val matchMockObject = MatchScore(
+            Player("1", 0, 0),
+            Player("0", 0, 0),
+            ScoreUpdateUseCase.PointTo.A,
+            false
         )
         every { useCase.execute(any()) } returns matchMockObject
         viewModel.updateScore(ScoreUpdateUseCase.PointTo.A)
         val result = viewModel.scoreBoardState.value
-        Assert.assertEquals(result.match.playerA.score.gamePoint, 1)
+        Assert.assertEquals("1",result.match.playerA.gamePoint)
     }
 
     @Test
     fun `reset score board`() {
-
+        val matchMockObject = MatchScore(
+            Player("0", 0, 0),
+            Player("0", 0, 0),
+            ScoreUpdateUseCase.PointTo.NON,
+            false
+        )
+        every { useCase.resetScoreBoard() } returns matchMockObject
         viewModel.resetMatchScore()
         val result = viewModel.scoreBoardState.value
-        Assert.assertEquals(result.match.playerA.score.gamePoint, 0)
+        Assert.assertEquals("0",result.match.playerA.gamePoint)
     }
 
 }
