@@ -2,14 +2,13 @@ package com.vinaymj.tennisscore.domain
 
 import com.vinaymj.tennisscore.common.Constants
 import com.vinaymj.tennisscore.domain.model.MatchScore
-import com.vinaymj.tennisscore.domain.model.Player
 import javax.inject.Inject
 
 class Match @Inject constructor() {
 
-    var playerA: PlayerA = PlayerA()
+    var playerA: Player = Player()
         private set
-    var playerB: PlayerB = PlayerB()
+    var playerB: Player = Player()
         private set
     var pointTo: ScoreUpdateUseCase.PointTo = ScoreUpdateUseCase.PointTo.NON
         private set
@@ -42,7 +41,7 @@ class Match @Inject constructor() {
         }
     }
 
-    private fun updateSetPoint(tempPlayerA: ScoreListener, tempPlayerB: ScoreListener) {
+    private fun updateSetPoint(tempPlayerA: Player, tempPlayerB: Player) {
         tempPlayerA.increaseSetPoint()
         if (tempPlayerA.score.setPoint == 6) {
             tempPlayerA.increaseMatchPoint()
@@ -60,7 +59,7 @@ class Match @Inject constructor() {
         }
     }
 
-    private fun gamePoint(tempPlayerA: ScoreListener, tempPlayerB: ScoreListener): Boolean {
+    private fun gamePoint(tempPlayerA: Player, tempPlayerB: Player): Boolean {
 
         return if (deuce) {
             (tempPlayerA.score.gamePoint - tempPlayerB.score.gamePoint) == 2
@@ -80,19 +79,19 @@ class Match @Inject constructor() {
     private fun someBodyWins() = (playerA.score.matchPoint == 2 || playerB.score.matchPoint == 2)
 
     fun resetMatchScore() {
-        playerA = PlayerA()
-        playerB = PlayerB()
+        playerA = Player()
+        playerB = Player()
         pointTo = ScoreUpdateUseCase.PointTo.NON
         deuce = false
     }
 
     fun toMatchScore() = MatchScore(
-        playerA = Player(
+        playerA = com.vinaymj.tennisscore.domain.model.Player(
             gamePoint = displayGamePoint(playerA.score.gamePoint),
             setPoint = playerA.score.setPoint,
             matchPoint = playerA.score.matchPoint
         ),
-        playerB = Player(
+        playerB = com.vinaymj.tennisscore.domain.model.Player(
             gamePoint = displayGamePoint(playerB.score.gamePoint),
             setPoint = playerB.score.setPoint,
             matchPoint = playerB.score.matchPoint

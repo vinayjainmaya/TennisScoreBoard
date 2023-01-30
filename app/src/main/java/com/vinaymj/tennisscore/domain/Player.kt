@@ -2,31 +2,31 @@ package com.vinaymj.tennisscore.domain
 
 import com.vinaymj.tennisscore.domain.model.Score
 
-class PlayerB: ScoreListener {
+class Player {
 
-    override val score: Score = Score()
+    val score: Score = Score()
 
-    override fun increaseGamePoint() {
+    fun increaseGamePoint() {
         score.updateGamePoint()
     }
 
-    override fun increaseSetPoint() {
+    fun increaseSetPoint() {
         score.updateSetPoint()
     }
 
-    override fun increaseMatchPoint() {
+    fun increaseMatchPoint() {
         score.updateMatchPoint()
     }
 
-    override fun resetGamePoint() {
+    fun resetGamePoint() {
         score.resetGamePoint()
     }
 
-    override fun resetSetPoint() {
+    fun resetSetPoint() {
         score.resetSetPoint()
     }
 
-    override fun setDeucePoint() {
+    fun setDeucePoint() {
         score.setDeucePoint()
     }
 }
