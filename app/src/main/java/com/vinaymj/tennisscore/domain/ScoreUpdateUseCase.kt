@@ -4,18 +4,18 @@ import com.vinaymj.tennisscore.domain.model.MatchScore
 import javax.inject.Inject
 
 
-class ScoreUpdateUseCase @Inject constructor() {
+class ScoreUpdateUseCase @Inject constructor(private val match: Match) {
 
 
     fun execute(pointTo: PointTo): MatchScore {
-        Match.updateScore(pointTo)
+        match.updateScore(pointTo)
 
-        return Match.toMatchScore()
+        return match.toMatchScore()
     }
 
     fun resetScoreBoard(): MatchScore {
-        Match.resetMatchScore()
-        return Match.toMatchScore()
+        match.resetMatchScore()
+        return match.toMatchScore()
     }
 
     enum class PointTo {

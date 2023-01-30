@@ -3,8 +3,9 @@ package com.vinaymj.tennisscore.domain
 import com.vinaymj.tennisscore.common.Constants
 import com.vinaymj.tennisscore.domain.model.MatchScore
 import com.vinaymj.tennisscore.domain.model.Player
+import javax.inject.Inject
 
-object Match {
+class Match @Inject constructor() {
 
     var playerA: PlayerA = PlayerA()
         private set

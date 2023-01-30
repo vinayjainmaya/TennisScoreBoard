@@ -1,5 +1,6 @@
 package com.vinaymj.tennisscore.domain
 
+import io.mockk.impl.annotations.MockK
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
@@ -10,9 +11,12 @@ class ScoreUpdateUseCaseTest {
 
     private lateinit var useCase: ScoreUpdateUseCase
 
+
+    private val match: Match = Match()
+
     @Before
     fun setUp() {
-        useCase = ScoreUpdateUseCase()
+        useCase = ScoreUpdateUseCase(match)
     }
 
     @After
@@ -54,7 +58,7 @@ class ScoreUpdateUseCaseTest {
         mockUpdateScore(3, ScoreUpdateUseCase.PointTo.B)
         mockUpdateScore(2, ScoreUpdateUseCase.PointTo.A)
         useCase.execute(ScoreUpdateUseCase.PointTo.A)
-        Assert.assertTrue(Match.deuce)
+        Assert.assertTrue(match.deuce)
     }
 
     @Test
@@ -90,7 +94,7 @@ class ScoreUpdateUseCaseTest {
         mockUpdateScore(3, ScoreUpdateUseCase.PointTo.A)
         mockUpdateScore(2, ScoreUpdateUseCase.PointTo.B)
         useCase.execute(ScoreUpdateUseCase.PointTo.B)
-        Assert.assertTrue(Match.deuce)
+        Assert.assertTrue(match.deuce)
     }
 
     @Test
