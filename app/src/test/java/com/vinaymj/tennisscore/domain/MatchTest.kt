@@ -84,6 +84,17 @@ class MatchTest {
         Assert.assertEquals(1, match.playerA.score.setPoint)
     }
 
+    @Test
+    fun `match return matchScore value when you call toMatchScore`() {
+        val matchScore = match.toMatchScore()
+        Assert.assertEquals("0", matchScore.playerAScore.gamePoint)
+        Assert.assertEquals(0, matchScore.playerAScore.setPoint)
+        Assert.assertEquals(0, matchScore.playerAScore.matchPoint)
+        Assert.assertEquals("0", matchScore.playerBScore.gamePoint)
+        Assert.assertEquals(0, matchScore.playerBScore.setPoint)
+        Assert.assertEquals(0, matchScore.playerBScore.matchPoint)
+    }
+
     private fun mockUpdateScore(count: Int, pointTo: ScoreUpdateUseCase.PointTo) {
         for(i in 1..count) {
             match.updateScore(pointTo)
