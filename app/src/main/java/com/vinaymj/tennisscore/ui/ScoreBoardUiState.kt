@@ -2,16 +2,16 @@ package com.vinaymj.tennisscore.ui
 
 import com.vinaymj.tennisscore.domain.ScoreUpdateUseCase.PointTo
 import com.vinaymj.tennisscore.domain.model.MatchScore
-import com.vinaymj.tennisscore.domain.model.Player
+import com.vinaymj.tennisscore.domain.model.PlayerScore
 
 data class ScoreBoardUiState(
     val match: MatchScore = MatchScore(
-        playerA = Player(
+        playerAScore = PlayerScore(
             gamePoint = "0",
             setPoint = 0,
             matchPoint = 0
         ),
-        playerB = Player(
+        playerBScore = PlayerScore(
             gamePoint = "0",
             setPoint = 0,
             matchPoint = 0

@@ -1,6 +1,6 @@
 package com.vinaymj.tennisscore.domain.model
 
-data class Player(
+data class PlayerScore(
    var gamePoint: String = "",
    var setPoint: Int = 0,
    var matchPoint: Int = 0

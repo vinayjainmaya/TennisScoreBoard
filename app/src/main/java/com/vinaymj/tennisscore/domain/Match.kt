@@ -2,6 +2,7 @@ package com.vinaymj.tennisscore.domain
 
 import com.vinaymj.tennisscore.common.Constants
 import com.vinaymj.tennisscore.domain.model.MatchScore
+import com.vinaymj.tennisscore.domain.model.PlayerScore
 import javax.inject.Inject
 
 class Match @Inject constructor() {
@@ -86,12 +87,12 @@ class Match @Inject constructor() {
     }
 
     fun toMatchScore() = MatchScore(
-        playerA = com.vinaymj.tennisscore.domain.model.Player(
+        playerAScore = PlayerScore(
             gamePoint = displayGamePoint(playerA.score.gamePoint),
             setPoint = playerA.score.setPoint,
             matchPoint = playerA.score.matchPoint
         ),
-        playerB = com.vinaymj.tennisscore.domain.model.Player(
+        playerBScore = PlayerScore(
             gamePoint = displayGamePoint(playerB.score.gamePoint),
             setPoint = playerB.score.setPoint,
             matchPoint = playerB.score.matchPoint

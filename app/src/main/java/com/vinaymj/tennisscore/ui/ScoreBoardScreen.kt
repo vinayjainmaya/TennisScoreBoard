@@ -44,7 +44,7 @@ fun ScoreBoardScreen(
 @Composable
 fun ResultSection(modifier: Modifier, scoreBoard: ScoreBoardUiState) {
     Text(text = stringResource(R.string.result_string,
-        stringResource(if (scoreBoard.match.playerA.wins()) R.string.player_a else R.string.player_b)),
+        stringResource(if (scoreBoard.match.playerAScore.wins()) R.string.player_a else R.string.player_b)),
         modifier = modifier.padding(8.dp).testTag("matchResult"),
         fontWeight = FontWeight.Bold,
         fontSize = 20.sp
@@ -66,23 +66,23 @@ fun ScoreTableSection(modifier: Modifier, scoreBoard: ScoreBoardUiState) {
         // Match Section
         Column(modifier = modifier.padding(8.dp), horizontalAlignment = Alignment.CenterHorizontally) {
             DrawTableHeader(modifier,R.string.match)
-            DrawTableCell(modifier, scoreBoard.match.playerA.matchPoint.toString(), "playerAMatchPoint")
-            DrawTableCell(modifier, scoreBoard.match.playerB.matchPoint.toString(), "playerBMatchPoint")
+            DrawTableCell(modifier, scoreBoard.match.playerAScore.matchPoint.toString(), "playerAMatchPoint")
+            DrawTableCell(modifier, scoreBoard.match.playerBScore.matchPoint.toString(), "playerBMatchPoint")
         }
 
         // Set Section
         Column(modifier = modifier.padding(8.dp), horizontalAlignment = Alignment.CenterHorizontally) {
             DrawTableHeader(modifier,R.string.set)
-            DrawTableCell(modifier, scoreBoard.match.playerA.setPoint.toString(), "playerASetPoint")
-            DrawTableCell(modifier, scoreBoard.match.playerB.setPoint.toString(), "playerBSetPoint")
+            DrawTableCell(modifier, scoreBoard.match.playerAScore.setPoint.toString(), "playerASetPoint")
+            DrawTableCell(modifier, scoreBoard.match.playerBScore.setPoint.toString(), "playerBSetPoint")
         }
 
         // Point Section
         Column(modifier = modifier.padding(8.dp), horizontalAlignment = Alignment.CenterHorizontally) {
 
             DrawTableHeader(modifier,R.string.point)
-            DrawTableCell(modifier, scoreBoard.match.playerA.gamePoint, "playerAGamePoint")
-            DrawTableCell(modifier, scoreBoard.match.playerB.gamePoint, "playerBGamePoint")
+            DrawTableCell(modifier, scoreBoard.match.playerAScore.gamePoint, "playerAGamePoint")
+            DrawTableCell(modifier, scoreBoard.match.playerBScore.gamePoint, "playerBGamePoint")
         }
     }
 }
